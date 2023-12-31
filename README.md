@@ -1,10 +1,27 @@
+Se debe tener preinstalados:
+ 
+ - Python3
+ - Docker
+ - Docker Compose
+
+
+
 1- Ir al directorio:
 
-    $ cd /home/agustin/Documentos/postgres-python
+    cd /home/agustin/Documentos/postgres-python
 
+2- Crear entorno virtual y activarlo:
 
-2- iniciar contenedor base de datos postgres:
+    python3 -m virtualenv venv
 
-    $ docker run --name mi-postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=postgres-python -p 5432:5432 -v /home/agustin/Documentos/postgres-python/postgres-python-db:/var/lib/postgresql/data -d postgres:14
+    source venv/bin/activate
 
-3- lo que sigue:
+3- Instalar requeriments.txt
+
+    pip3 install -r "requirements.txt"
+
+4- Iniciar contenedor base de datos postgres:
+
+    sudo docker compose up -d
+
+5- Conectar base de datos con DBeaver:
