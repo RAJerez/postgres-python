@@ -1,7 +1,7 @@
 import sqlalchemy as sa
 from decouple import config
 
-def create_tables():
+def carga_data():
     # Se traen las variables de entorno desde el archivo ".env"
     user = config('POSTGRES_USER')
     password = config('POSTGRES_PASSWORD')
@@ -15,22 +15,23 @@ def create_tables():
     try:
         engine = sa.create_engine(connection_string)
 
-        # Creo tablas
+        # Cargo data
         with engine.connect() as connection:
-            script_path = '/home/agustin/Documentos/postgres-python/sql_script/create_table.sql'
+            script_path = '/home/agustin/Documentos/postgres-python/sql_script/load_data.sql'
             with open(script_path, 'r') as script_file:
                 script = script_file.read()
                 connection.execute(sa.text(script))
                 connection.commit()
 
-        print("Tablas creadas exitosamente.")
+        print("Data cargada correctamente")
 
     except sa.exc.SQLAlchemyError as e:
         # Errores específicos de SQLAlchemy
-        print(f"Error al crear tablas: {e}")
+        print(f"Error al cargar data: {e}")
     except Exception as e:
         # Excepciones generales
         print(f"Error inesperado: {e}")
 
 if __name__ == "__main__":
-    create_tables()
+    archivo_sql = '/home/agustin/Documentos/postgres-python/sql_script/load_data.sql'
+    carga_data()
