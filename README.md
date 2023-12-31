@@ -25,3 +25,13 @@ Se debe tener preinstalados:
     sudo docker compose up -d
 
 5- Conectar base de datos con DBeaver:
+
+
+6- Ejecutar el script connection.py. El mismo revisa que la conexión se realize.
+
+    python3 connection.py
+
+
+7- Ejecutar el script tables.py. El mismo creará las tablas.
+
+    python3 tables.py
